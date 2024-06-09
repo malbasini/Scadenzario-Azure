@@ -279,6 +279,11 @@ namespace Scadenzario.Migrations
                 name: "IX_Ricevute_IdScadenza",
                 table: "Ricevute",
                 column: "IdScadenza");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Scadenze_IDBeneficiario",
+                table: "Scadenze",
+                column: "IDBeneficiario");
         }
 
         /// <inheritdoc />

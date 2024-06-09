@@ -12,7 +12,7 @@ using Scadenzario.Areas.Identity.Data;
 namespace Scadenzario.Migrations
 {
     [DbContext(typeof(ScadenzarioIdentityDbContext))]
-    [Migration("20240602003518_initial")]
+    [Migration("20240608235047_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -263,6 +263,8 @@ namespace Scadenzario.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDScadenza"));
+
                     b.Property<DateTime?>("DataPagamento")
                         .HasColumnType("datetime")
                         .HasColumnName("DataPagamento");
@@ -297,6 +299,8 @@ namespace Scadenzario.Migrations
                         .HasColumnName("Sollecito");
 
                     b.HasKey("IDScadenza");
+
+                    b.HasIndex("IDBeneficiario");
 
                     b.ToTable("Scadenze", (string)null);
                 });
@@ -448,7 +452,7 @@ namespace Scadenzario.Migrations
                 {
                     b.HasOne("Scadenzario.Models.Entities.Beneficiario", "Beneficiario")
                         .WithMany("Scadenze")
-                        .HasForeignKey("IDScadenza")
+                        .HasForeignKey("IDBeneficiario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Scadenze_Beneficiario");

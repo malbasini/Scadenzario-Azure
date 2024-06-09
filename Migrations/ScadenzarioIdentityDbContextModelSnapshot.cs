@@ -17,6 +17,7 @@ namespace Scadenzario.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .UseCollation("utf8_general_ci")
                 .HasAnnotation("ProductVersion", "8.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -259,6 +260,8 @@ namespace Scadenzario.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDScadenza"));
+
                     b.Property<DateTime?>("DataPagamento")
                         .HasColumnType("datetime")
                         .HasColumnName("DataPagamento");
@@ -293,6 +296,8 @@ namespace Scadenzario.Migrations
                         .HasColumnName("Sollecito");
 
                     b.HasKey("IDScadenza");
+
+                    b.HasIndex("IDBeneficiario");
 
                     b.ToTable("Scadenze", (string)null);
                 });
@@ -444,7 +449,7 @@ namespace Scadenzario.Migrations
                 {
                     b.HasOne("Scadenzario.Models.Entities.Beneficiario", "Beneficiario")
                         .WithMany("Scadenze")
-                        .HasForeignKey("IDScadenza")
+                        .HasForeignKey("IDBeneficiario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Scadenze_Beneficiario");
