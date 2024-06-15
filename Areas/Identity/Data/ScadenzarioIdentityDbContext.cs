@@ -14,7 +14,7 @@ public class ScadenzarioIdentityDbContext : IdentityDbContext<ApplicationUser>
     }
 
     public virtual DbSet<Scadenza> Scadenze { get; set; }
-    public virtual DbSet<Beneficiario?> Beneficiari { get; set; }
+    public virtual DbSet<Beneficiario> Beneficiari { get; set; }
     public virtual DbSet<Ricevuta> Ricevute { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
