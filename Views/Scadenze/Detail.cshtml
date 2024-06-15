@@ -38,25 +38,39 @@
                         </div>
                         <div class="input-group">
                             <label asp-for="DataScadenza"></label>:&nbsp;
-                            <b>@Model.DataScadenza</b>
+                            <b>@Model.DataScadenza.ToString().Replace("00:00:00","")</b>
                         </div>
                         <div class="input-group">
                             <label asp-for="Importo"></label>:&nbsp;
-                            <b>@Model.Importo</b>
+                            <b>@Model.Importo&nbsp;€</b>
                         </div>
                     </div>
                     <div class="row col-12">
                         <div class="input-group">
                             <label asp-for="DataPagamento"></label>:&nbsp;
-                            <b>@Model.DataPagamento</b>
+                            <b>@Model.DataPagamento.ToString().Replace("00:00:00","")</b>
                         </div>
                         <div class="input-group">
                             <label asp-for="GiorniRitardo"></label>:&nbsp;
-                            <b>@Model.GiorniRitardo</b>
+                            @{
+                                if (Model.GiorniRitardo < 0)
+                                {
+                                    <b style="color: red">@Model.GiorniRitardo</b>
+                                }
+                                else
+                                {
+                                    <b style="color: black">@Model.GiorniRitardo</b>
+                                }
+                            }
+                            
                         </div>
                         <div class="input-group">
                             <label asp-for="Sollecito"></label>:&nbsp;
-                            <b>@Model.Sollecito</b>
+                            @{
+                                string s = String.Empty;
+                                s = Model.Sollecito.Equals(true) ? " Si" : "No";
+                            }
+                                <b>@s</b>
                         </div>
                     </div>
                 </div>

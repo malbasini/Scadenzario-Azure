@@ -19,9 +19,7 @@ public class ScadenzarioIdentityDbContext : IdentityDbContext<ApplicationUser>
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-        
-        modelBuilder.HasAnnotation("Relational:Collation", "utf8_general_ci");
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Beneficiario>(entity =>
             {
                 entity.HasKey(e => e.IdBeneficiario);
@@ -79,7 +77,7 @@ public class ScadenzarioIdentityDbContext : IdentityDbContext<ApplicationUser>
 
                 entity.HasMany(beneficiario => beneficiario.Scadenze)
                     .WithOne(scadenza => scadenza.Beneficiario)
-                    .HasForeignKey(scadenza => scadenza.IDScadenza)
+                    .HasForeignKey(scadenza => scadenza.IDBeneficiario)
                     .HasConstraintName("FK_Scadenze_Beneficiario")
                     .OnDelete(DeleteBehavior.Cascade);
             });
