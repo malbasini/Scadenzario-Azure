@@ -15,10 +15,12 @@ namespace Scadenzario.Controllers
     public class ScadenzeController : Controller
     {
         private readonly IScadenzeService service;
+        private readonly IRicevuteService _ricevute;
         
-        public ScadenzeController(ICachedScadenzeService service)
+        public ScadenzeController(ICachedScadenzeService service, IRicevuteService ricevute)
         {
             this.service = service;
+            _ricevute = ricevute;
         }
         [AllowAnonymous]
         public async Task<IActionResult> Index(ScadenzaListInputModel input)
@@ -38,6 +40,7 @@ namespace Scadenzario.Controllers
         {
             ViewData["Title"] = "Dettaglio Scadenza";
             ScadenzaDetailViewModel viewModel = await service.GetScadenzaAsync(id);
+            viewModel.Ricevute = _ricevute.GetRicevute(id);
             return View(viewModel);
         }
         [HttpGet]
@@ -80,6 +83,7 @@ namespace Scadenzario.Controllers
             ViewData["Title"] = "Aggiorna Scadenza";
             ScadenzaEditInputModel inputModel = new ScadenzaEditInputModel();
             inputModel = await service.GetScadenzaForEditingAsync(id);
+            inputModel.Ricevute = _ricevute.GetRicevute(id);
             inputModel.Denominazione=service.GetBeneficiarioById(inputModel.IdBeneficiario);
             inputModel.Beneficiari = service.GetBeneficiari();
             return View(inputModel);
@@ -97,7 +101,7 @@ namespace Scadenzario.Controllers
                     inputModel.GiorniRitardo=service.DateDiff(inputModel.DataScadenza,DateTime.Now.Date);   
                 await service.EditScadenzaAsync(inputModel);
                 TempData["Message"] = "Aggiornamento effettuato correttamente".ToUpper();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index),"Scadenze");
             }
             else
             {
@@ -121,7 +125,7 @@ namespace Scadenzario.Controllers
             }
             else
             {
-                ViewData["Title"] = "Elimina beneficiario";
+                ViewData["Title"] = "Elimina scadenza";
                 return View(inputModel); 
             }
               

@@ -1,11 +1,14 @@
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using Scadenzario.Models.InputModels.Ricevute;
 using Scadenzario.Models.InputModels.Scadenze;
 using Scadenzario.Models.Services.Applications.Scadenze;
 using Scadenzario.Models.Utility;
 using Scadenzario.Models.ViewModels.Ricevute;
 using Scadenzario.Models.ViewModels.Scadenze;
+using Scadenzario.Controllers;
+using Index = System.Index;
 
 namespace Scadenzario.Controllers;
 
@@ -31,7 +34,11 @@ public class RicevuteController : Controller
             var files = Request.Form.Files;
             var i = 0;
             string physicalWebRootPath = _environment.ContentRootPath;
-            var path = physicalWebRootPath + "/Upload";
+            var path = String.Empty;
+            if(OperatingSystem.IsWindows())
+                path = physicalWebRootPath + "\\Upload";
+            else if (OperatingSystem.IsLinux()|| OperatingSystem.IsMacOS())
+                path = physicalWebRootPath + "/Upload";
             foreach (var file in files)
             {
                 RicevutaCreateInputModel ricevuta = new RicevutaCreateInputModel();
@@ -118,6 +125,6 @@ public class RicevuteController : Controller
              "wwwroot", filename);
          System.IO.File.Delete(path);
          viewModel.Ricevute = _ricevute.GetRicevute(idscadenza);
-         return View("Detail",viewModel);
+         return RedirectToAction(nameof(Index),"Scadenze",new {Areas = "", id = idscadenza});
      }
 }

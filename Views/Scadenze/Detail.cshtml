@@ -12,8 +12,8 @@
     <div class="row">
         <input type="hidden" name="id" asp-for="IDBeneficiario">
         <div class="col-md-6">
-            <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-route-id="@Model.IDScadenza"><i class="fas fa-pencil-alt"></i> Modifica</a>
-            <a class="btn btn-outline-primary btn-sm" asp-action="Index"><i class="fas fa-th-list"></i> Torna alla Lista</a>
+            <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-controller="Scadenze"  asp-route-id="@Model.IDScadenza"><i class="fas fa-pencil-alt"></i> Modifica</a>
+            <a class="btn btn-outline-primary btn-sm" asp-controller="Scadenze" asp-action="Index"><i class="fas fa-th-list"></i> Torna alla Lista</a>
         </div>
         <div class="col-md-6">
           
