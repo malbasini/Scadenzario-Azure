@@ -18,7 +18,7 @@ namespace Scadenzario.Models.Services.Application
             this.logger = logger;
         }
 
-        public async Task<RicevutaViewModel> CreateRicevutaAsync(List<RicevutaCreateInputModel> input)
+        public async Task<RicevutaViewModel> CreateRicevutaAsync(List<RicevutaCreateInputModel>? input)
         {
             foreach(var item in input)
             {
