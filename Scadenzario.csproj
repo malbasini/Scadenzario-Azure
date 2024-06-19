@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Ricevute\Detail.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

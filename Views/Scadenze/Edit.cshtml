@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-2 d-flex align-items-center">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Salva</button>
-                &nbsp;&nbsp;&nbsp;&nbsp;<button type="button"  class="btn btn-danger btn-lg ml-3" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="fas fa-trash-alt"></i></button>
+                &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="submitForm();"  class="btn btn-danger btn-lg ml-3" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="fas fa-trash-alt"></i></button>
             </div>
         </div>
         <div class="row">
@@ -103,7 +103,7 @@
             </div>
         </div>
     </form>
-    <form id="myForm" asp-action="Delete" asp-controller="Scadenze" asp-route-id="@Model.IdScadenza">
+    <form asp-action="Delete" asp-controller="Scadenze" asp-route-id="@Model.IdScadenza">
         <!-- Modal -->
         <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -117,7 +117,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Chiudi</button>
-                        <button type="button" onclick="submitForm();" class="btn btn-danger">Conferma</button>
+                        <button type="submit"  class="btn btn-danger">Conferma</button>
                     </div>
                 </div>
             </div>
@@ -164,31 +164,10 @@
                         Azioni
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" asp-controller="Ricevute" asp-action="Download" asp-route-id ="@item.Id">Scarica File</a></li>
-                        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Cancella Allegato</button></li>
+                        <li><a class="dropdown-item" asp-action="Download" asp-route-id="@item.Id">Scarica File</a></li>
+                        <li><a class="dropdown-item" asp-action="DeleteAllegato" asp-route-id="@item.Id" asp-route-idscadenza="@item.IdScadenza">Cancella Allegato</a></li>
                     </ul>
                 </div>
-                <form asp-controller="Ricevute" asp-action="DeleteAllegato" asp-route-id="@item.Id" asp-route-idscadenza="@item.IdScadenza">
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Stai per eliminare la ricevuta selezionata e non
-                                    potrai recuperarla. Continuare?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Chiudi</button>
-                                    <button type="submit" class="btn btn-danger">Conferma</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
             </td>
         </tr>
         }
@@ -221,7 +200,7 @@
                 data.append(files[i].name, files[i]);
             }
             $.ajax({
-                url: '@Url.Action("FileUpload", "Ricevute")',
+                url: '@Url.Action("FileUpload", "Scadenze")',
                 type: "POST",
                 data: data,
                 contentType: false,
@@ -234,9 +213,5 @@
             });
         });
     });
-    function submitForm()
-    {
-        document.getElementById('myForm').submit();
-    }
 </script>
 }

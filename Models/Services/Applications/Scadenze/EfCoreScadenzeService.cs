@@ -103,6 +103,7 @@ namespace Scadenzario.Models.Services.Application.Scadenze
             IQueryable<ScadenzaEditInputModel> queryLinq = _dbContext.Scadenze
                 .AsNoTracking()
                 .Where(s => s.IDScadenza == id)
+                .Include(r=>r.Ricevute)
                 .Select(s => ScadenzaEditInputModel.FromEntity(s)); //Usando metodi statici come FromEntity, la query potrebbe essere inefficiente. Mantenere il mapping nella lambda oppure usare un extension method personalizzato
 
             ScadenzaEditInputModel viewModel = await queryLinq.FirstOrDefaultAsync();
@@ -130,6 +131,7 @@ namespace Scadenzario.Models.Services.Application.Scadenze
             IQueryable<ScadenzaDetailViewModel> queryLinq = _dbContext.Scadenze
                 .AsNoTracking()
                 .Where(s => s.IDScadenza == id)
+                .Include(scadenza=>scadenza.Ricevute)
                 .Where(z=> z.IDUser == IdUser)
                 .Select(s => ScadenzaDetailViewModel.FromEntity(s)); //Usando metodi statici come FromEntity, la query potrebbe essere inefficiente. Mantenere il mapping nella lambda oppure usare un extension method personalizzato
 

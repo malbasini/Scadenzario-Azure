@@ -1,3 +1,4 @@
+using System.Configuration;
 using AspNetCore.ReCaptcha;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ using Scadenze.Customizations.ModelBinders;
 using Scdenzario.Models.Options;
 
             var builder = WebApplication.CreateBuilder(args);
-            
+           
             /*--BEGIN PROGRAM*/
             
             Service(builder);
@@ -31,7 +32,8 @@ using Scdenzario.Models.Options;
             static void Service(WebApplicationBuilder builder)
             { 
                 // Add services to the container.
-                String connectionString = builder.Configuration.GetValue<String>("ConnectionStrings:Default");
+                builder.Configuration.AddEnvironmentVariables();
+                string connectionString = builder.Configuration.GetValue<string>("ConnectionStrings:Default");
                 builder.Services.AddResponseCaching();
                 builder.Services.AddReCaptcha(builder.Configuration.GetSection("ReCaptcha"));
                 builder.Services.AddMvc(Options =>
@@ -77,6 +79,7 @@ using Scdenzario.Models.Options;
             //EXTERNAL LOGIN
             static void ExternalLogin(WebApplicationBuilder builder)
             {
+                
                 builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
                 {
                     facebookOptions.AppId = builder.Configuration.GetValue<String>("LoginFacebook:AppId");
@@ -122,10 +125,8 @@ using Scdenzario.Models.Options;
                 builder.Services.Configure<IMemoryCacheOptions>(builder.Configuration.GetSection("MemoryCache"));
 
             }
-            
-            var app = builder.Build(); 
+            var app = builder.Build();
             //MIDDLEWARE
-            
             ConfigureApp(app);
             
             static void ConfigureApp(WebApplication app)

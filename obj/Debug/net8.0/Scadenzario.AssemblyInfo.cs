@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Scadenzario")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ba7364a699fdddf6d74965c4586f0b09eee52f6f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Scadenzario")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Scadenzario")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

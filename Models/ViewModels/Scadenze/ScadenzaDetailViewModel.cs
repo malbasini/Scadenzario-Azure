@@ -30,7 +30,11 @@ namespace Scadenzario.Models.ViewModels.Scadenze
                 DataPagamento = scadenza.DataPagamento,
                 Importo = scadenza.Importo,
                 GiorniRitardo = scadenza.GiorniRitardo,
-                Sollecito = scadenza.Sollecito
+                Sollecito = scadenza.Sollecito,
+                Ricevute = scadenza.Ricevute
+                    .OrderBy(ricevuta => ricevuta.Id)
+                    .Select(ricevuta => RicevutaViewModel.FromEntity(ricevuta))
+                    .ToList()
             };
         }
     }
