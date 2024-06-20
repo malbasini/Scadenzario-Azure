@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KLow1R8I6Q55WgQIF0EVVMSH8Hrm+2WqIp+v0ojOWx4=",
+  "Hash": "UJ1Ce2Cn79WoB0/n6cATO6G4q3chOJFHj5U1DmVRU7M=",
   "Source": "Scadenzario",
   "BasePath": "_content/Scadenzario",
   "Mode": "Default",
@@ -2259,12 +2259,12 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/LICENSE"
     },
     {
-      "Identity": "/Users/marcoalbasini/Documents/Software/Scadenzario/wwwroot/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js",
+      "Identity": "/Users/marcoalbasini/Documents/Software/Scadenzario/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "SourceId": "Scadenzario",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/marcoalbasini/Documents/Software/Scadenzario/wwwroot/",
       "BasePath": "_content/Scadenzario",
-      "RelativePath": "lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js",
+      "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2275,15 +2275,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"
+      "OriginalItemSpec": "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "/Users/marcoalbasini/Documents/Software/Scadenzario/wwwroot/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js",
+      "Identity": "/Users/marcoalbasini/Documents/Software/Scadenzario/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "SourceId": "Scadenzario",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/marcoalbasini/Documents/Software/Scadenzario/wwwroot/",
       "BasePath": "_content/Scadenzario",
-      "RelativePath": "lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js",
+      "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2294,7 +2294,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"
+      "OriginalItemSpec": "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
     },
     {
       "Identity": "/Users/marcoalbasini/Documents/Software/Scadenzario/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",

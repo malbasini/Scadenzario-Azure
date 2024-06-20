@@ -51,6 +51,7 @@
     <Folder Include="Models\Services\Infrastructure\" />
     <Folder Include="Models\Utility\" />
     <Folder Include="Views\Shared\Scadenze\" />
+    <Folder Include="wwwroot\Upload\" />
   </ItemGroup>
 
 </Project>

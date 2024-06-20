@@ -164,8 +164,8 @@
                         Azioni
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" asp-action="Download" asp-route-id="@item.Id">Scarica File</a></li>
-                        <li><a class="dropdown-item" asp-action="DeleteAllegato" asp-route-id="@item.Id">Cancella Allegato</a></li>
+                        <li><a class="dropdown-item" asp-controller="Ricevute"  asp-action="Download" asp-route-id="@item.Id">Scarica File</a></li>
+                        <li><a class="dropdown-item" asp-controller="Ricevute"  asp-action="DeleteAllegato" asp-route-id="@item.Id">Cancella Allegato</a></li>
                     </ul>
                 </div>
             </td>
@@ -189,7 +189,7 @@
                 data.append(files[i].name, files[i]);
             }
             $.ajax({
-                url: '@Url.Action("FileUpload", "Scadenze")',
+                url: '@Url.Action("FileUpload", "Ricevute")',
                 type: "POST",
                 data: data,
                 contentType: false,
