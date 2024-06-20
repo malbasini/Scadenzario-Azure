@@ -46,6 +46,7 @@ namespace Scadenzario.Controllers
         {
             ViewData["Title"] = "Dettaglio Scadenza";
             ScadenzaDetailViewModel viewModel = await service.GetScadenzaAsync(id);
+            viewModel.Ricevute = _ricevute.GetRicevute(id);
             return View(viewModel);
         }
         [HttpGet]
@@ -220,20 +221,17 @@ namespace Scadenzario.Controllers
          memory.Position = 0;
          return File(memory, Utility.GetContentType(path), Path.GetFileName(path));
      }
-     public async Task<IActionResult> DeleteAllegato(int id, int idscadenza)
+     public async Task<IActionResult> DeleteAllegato(int id)
      {
-         ScadenzaDetailViewModel viewModel = await service.GetScadenzaAsync(idscadenza);
-         ViewData["Title"] = "Dettaglio Scadenza";
          RicevutaViewModel ricevutaViewModel = await _ricevute.GetRicevutaAsync(id);
          await _ricevute.DeleteRicevutaAsync(id);
          string filename = ricevutaViewModel.Path;
          if (filename == null)
-             throw new Exception("File name not found");
+             throw new ArgumentException("File name not found");
          var path = Path.Combine(
              Directory.GetCurrentDirectory(),
              "wwwroot", filename);
          System.IO.File.Delete(path);
-         viewModel.Ricevute = _ricevute.GetRicevute(idscadenza);
          TempData["Message"] = "Cancellazione effettuata correttamente";
          return RedirectToAction(nameof(System.Index),"Scadenze");
      }
